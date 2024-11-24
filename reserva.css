@@ -1,0 +1,94 @@
+.navbar-toggler {
+    border: none; /* Remove a borda padrão */
+    position: relative;
+    z-index: 10; /* Garante que o botão fique acima de outros elementos */
+    
+ 
+display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+}
+
+/* Estilo do ícone dentro do botão */
+.navbar-toggler i {
+    font-size: 1.3em; /* Tamanho do ícone */
+    color: #632f0cad; /* Cor do ícone */
+    order: 1; /* Garante que o botão de menu venha depois do botão de status */
+    margin-left: auto; /* Alinha o botão do menu à direita */
+}
+
+
+/* Estilo da navbar para fundos personalizados */
+.custom-navbar {
+    background-color: #e7ded59b;
+}
+  
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Cor de fundo da página */
+   
+}
+
+/* Estilo para seções de conteúdo */
+section {
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Adiciona uma margem superior para garantir que a seção não fique colada à navbar */
+}
+
+/* Estilo dos títulos das seções */
+h2 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Estilo para os campos de formulário */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Estilo dos campos de entrada */
+input[type="text"], input[type="email"], button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+
+.btn-verificar {
+    background-color: #4CAF50; 
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-verificar:hover {
+    background-color: #45a049; 
+}
+
+/* Estilo do rodapé */
+footer {
+    display: block;
+    background-color: #dfbd8a; /* Cor de fundo do footer */
+    color: #632f0c; /* Cor do texto no footer */
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: auto;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 20px 0;
+    margin-bottom: 0;
+}

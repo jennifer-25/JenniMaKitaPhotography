@@ -1,0 +1,110 @@
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f1f1; /* Cor de fundo do corpo da página */
+    }
+    h2{
+        text-align: center;
+    }
+
+    .logo-container {
+        display: flex;
+        justify-content: center; /* Centraliza horizontalmente */
+        margin-top: 20px; /* Adiciona espaço em cima */
+      }
+    
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(255, 255, 255); /* Cinza transparente */
+        z-index: -1; /* Coloca a sobreposição atrás do conteúdo */
+    }
+    
+    .form-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #7a4c1e72; /* Fundo branco do formulário */
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        width: 90%; /* Largura relativa do formulário */
+        max-width: 800px; /* Largura máxima do formulário */
+        max-height: 1200px;
+        z-index: 1; /* Coloca o formulário na frente da sobreposição */
+    }
+    
+    .form-container h2 {
+        margin-bottom: 20px;
+        color: #333; /* Cor do texto */
+    }
+    
+    .form-container label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333; /* Cor do texto */
+    }
+    
+    .form-container input[type="text"],
+    .form-container input[type="email"],
+    .form-container input[type="number"],
+    .form-container textarea {
+        width: calc(100% - 16px); /* Largura ajustada para levar em conta o preenchimento */
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    
+    .form-container button {
+        background-color: #deaf4b;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
+    
+    .form-container button:hover {
+        background-color: #237de3;
+    }
+
+    .modal {
+        display: none; /* Esconde o modal por padrão */
+        position: fixed; /* Permite que o modal fique posicionado fixamente */
+        z-index: 1; /* Coloca o modal na frente de outros elementos */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto; /* Adiciona barra de rolagem se o conteúdo for longo */
+        background-color: rgba(0, 0, 0, 0.5); /* Fundo cinza transparente */
+    }
+    
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* Centraliza o modal verticalmente */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Ajusta a largura do modal */
+    }
+    
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }

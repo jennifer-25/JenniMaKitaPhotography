@@ -1,0 +1,4 @@
+{
+    "phpunit.commandSuffix": "./vendor/bin/phpunit"
+  }
+  

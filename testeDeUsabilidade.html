@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Usabilidade</title>
+    <link rel="stylesheet" href="testeDeUsabilidade.css">
+    <script>
+        // Variável global para armazenar o tempo de início
+        let inicio;
+        let cronometro;
+    
+        // Função chamada quando o botão "Start" for clicado
+        function startQuestionnaire() {
+            // Registra o tempo de início
+            inicio = Date.now();
+            // Armazena o tempo no campo oculto
+            document.getElementById('inicio').value = inicio;
+    
+            // Inicia o cronômetro
+            cronometro = setInterval(() => {
+                const tempoDecorrido = Date.now() - inicio;
+    
+                // Converte o tempo decorrido em minutos e segundos
+                const minutos = Math.floor(tempoDecorrido / 60000);  // 1 minuto = 60000ms
+                const segundos = Math.floor((tempoDecorrido % 60000) / 1000);  // Restante dos segundos
+    
+                // Exibe o tempo decorrido no console
+                console.log("Tempo decorrido: " + minutos + ":" + (segundos < 10 ? "0" + segundos : segundos)); // Adiciona zero à esquerda se necessário
+    
+                // Se você quiser exibir o tempo no próprio documento (por exemplo, em um elemento de texto)
+                // document.getElementById('tempo').innerText = minutos + ":" + (segundos < 10 ? "0" + segundos : segundos);
+            }, 1000);
+    
+            // Torna os campos de dados cadastrais, questões e comentários visíveis
+            document.getElementById('dados-cadastrais').style.display = 'block';
+            const questions = document.querySelectorAll('.question');
+            questions.forEach((question) => {
+                question.style.display = 'block'; // Torna as questões visíveis
+            });
+            document.getElementById('comentarios').style.display = 'block'; // Torna os comentários gerais visíveis
+    
+            // Desabilita o botão "Start" e habilita o botão "Enviar"
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('submitBtn').disabled = false;
+        }
+    
+        // Função chamada quando o botão "Enviar" for clicado (stop do cronômetro)
+        function stopCronometro(event) {
+            const tempoGasto = Date.now() - inicio;  // Calcula o tempo decorrido em milissegundos
+    
+            // Converte o tempo em minutos e segundos
+            const minutos = Math.floor(tempoGasto / 60000);  // 1 minuto = 60000ms
+            const segundos = Math.floor((tempoGasto % 60000) / 1000);  // Restante dos segundos
+    
+            // Formata o tempo como mm:ss
+            const tempoFormatado = minutos + ":" + (segundos < 10 ? "0" + segundos : segundos); // Adiciona zero à esquerda se necessário
+            document.getElementById('tempo_gasto').value = tempoFormatado; // Armazena o tempo formatado
+    
+            event.preventDefault();  // Previne o envio do formulário até garantir o valor
+    
+            // Envia o formulário manualmente
+            document.querySelector('form').submit(); // Envia o formulário
+        }
+    </script>
+    
+    
+    
+</head>
+<body>
+    <div class="form-container">
+        <h1>Questionário de Usabilidade</h1>
+        <p>
+            <strong>Instruções:</strong><br>
+            Este questionário faz parte de uma pesquisa sobre "Avaliação da usabilidade do site de fotografia da <strong>Jennifer Makita</strong>".<br><br>
+            Aqui você terá a oportunidade de avaliar a sua satisfação com a usabilidade do site, incluindo aspectos como navegação, clareza das informações e facilidade de interação.<br><br>
+            Por favor, leia cada afirmação e indique o quanto você concorda ou discorda, marcando a resposta, 1 = concordo plenamente até 7 = discordo totalmente. Caso alguma declaração não se aplique, escolha a opção "N/A".<br><br>
+            Se necessário, utilize o campo de observações para detalhar suas respostas.<br><br>
+            Muito obrigado pela sua contribuição!
+        </p>
+
+        <!-- Botão Start antes dos dados cadastrais -->
+        <button type="button" id="startBtn" onclick="startQuestionnaire()">Start</button>
+
+        <form action="processar_testeDeUsabilidade.php" method="post">
+            <!-- Dados Cadastrais -->
+            <fieldset id="dados-cadastrais" style="display: none;">
+                <legend><strong>Dados Cadastrais</strong></legend>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu Nome">
+
+                <label for="sexo">Sexo:</label>
+                <input type="text" id="sexo" name="sexo" required><br><br>
+    
+                <label for="idade">Idade:</label>
+                <input type="number" id="idade" name="idade" required><br><br>
+    
+                <label for="profissao">Profissão:</label>
+                <input type="text" id="profissao" name="profissao" required>
+            </fieldset>
+    
+            <fieldset>
+                <legend>Questões sobre Usabilidade</legend>
+    
+                <div class="question" style="display: none;"> <!-- Questão 1 inicialmente invisível -->
+                    <p>1. Posso efetivamente encontrar as informações que preciso no site (ex.: preços, tipos de ensaio).</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="1" required> 1</label>
+                        <label><input type="radio" name="q1" value="2"> 2</label>
+                        <label><input type="radio" name="q1" value="3"> 3</label>
+                        <label><input type="radio" name="q1" value="4"> 4</label>
+                        <label><input type="radio" name="q1" value="5"> 5</label>
+                        <label><input type="radio" name="q1" value="6"> 6</label>
+                        <label><input type="radio" name="q1" value="7"> 7</label>
+                        <label><input type="radio" name="q1" value="N/A"> N/A</label>
+                    </div>
+                    <textarea name="obs_q1" placeholder="Observações (opcional)"></textarea>
+                </div>
+    
+                <div class="question" style="display: none;"> <!-- Questão 2 inicialmente invisível -->
+                    <p>2. Eu sou capaz de contratar um pacote de ensaio de forma rápida usando o site.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="1" required> 1</label>
+                        <label><input type="radio" name="q2" value="2"> 2</label>
+                        <label><input type="radio" name="q2" value="3"> 3</label>
+                        <label><input type="radio" name="q2" value="4"> 4</label>
+                        <label><input type="radio" name="q2" value="5"> 5</label>
+                        <label><input type="radio" name="q2" value="6"> 6</label>
+                        <label><input type="radio" name="q2" value="7"> 7</label>
+                        <label><input type="radio" name="q2" value="N/A"> N/A</label>
+                    </div>
+                    <textarea name="obs_q2" placeholder="Observações (opcional)"></textarea>
+                </div>
+    
+                <!-- Questão 3 -->
+                <div class="question" style="display: none;">
+                    <p>3. O site tem um design atraente e moderno.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="1" required> 1</label>
+                        <label><input type="radio" name="q3" value="2"> 2</label>
+                        <label><input type="radio" name="q3" value="3"> 3</label>
+                        <label><input type="radio" name="q3" value="4"> 4</label>
+                        <label><input type="radio" name="q3" value="5"> 5</label>
+                        <label><input type="radio" name="q3" value="6"> 6</label>
+                        <label><input type="radio" name="q3" value="7"> 7</label>
+                        <label><input type="radio" name="q3" value="N/A"> N/A</label>
+                    </div>
+                    <textarea name="obs_q3" placeholder="Observações (opcional)"></textarea>
+                </div>
+
+                <!-- Questão 4 -->
+                <div class="question" style="display: none;">
+                    <p>4. As informações apresentadas no site (textos, imagens, preços) são claras e compreensíveis.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="1" required> 1</label>
+                        <label><input type="radio" name="q4" value="2"> 2</label>
+                        <label><input type="radio" name="q4" value="3"> 3</label>
+                        <label><input type="radio" name="q4" value="4"> 4</label>
+                        <label><input type="radio" name="q4" value="5"> 5</label>
+                        <label><input type="radio" name="q4" value="6"> 6</label>
+                        <label><input type="radio" name="q4" value="7"> 7</label>
+                        <label><input type="radio" name="q4" value="N/A"> N/A</label>
+                    </div>
+                    <textarea name="obs_q4" placeholder="Observações (opcional)"></textarea>
+                </div>
+            </fieldset>
+
+            <!-- Comentários finais -->
+            <fieldset id="comentarios" style="display: none;">
+                <legend><strong>Comentários Gerais</strong></legend>
+                <textarea name="comentarios" placeholder="Escreva seus comentários aqui"></textarea>
+            </fieldset>
+
+            <!-- Campo oculto para armazenar o tempo gasto -->
+            <input type="hidden" id="tempo_gasto" name="tempo_gasto">
+            <input type="hidden" id="inicio" name="inicio">
+
+            <!-- Botão de Envio -->
+            <button type="button" id="submitBtn" class="submit-btn" onclick="stopCronometro(event)" disabled>Enviar Respostas</button>
+        </form>
+    </div>
+</body>
+</html>
